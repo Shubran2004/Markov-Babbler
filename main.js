@@ -1,16 +1,32 @@
-const exp = require("constants");
+
 
 const fs = require("fs").promises;
 
 
 let textout="";
 
-const key= 79;
-const hash=10067;
+const hash= 31;
+const MOD=1000067;
 
 const mymap= new Map();
 const pair = new Map();
 const invpair = new Map();
+
+let exptable= new Array();
+
+async function precompute(){
+    let i=1;
+    for(let j=0;j<=100;j++){
+      exptable.push(i);
+      i=(i*hash)%MOD;
+    }
+
+for(let i=0;i<exptable.length;i++){
+  console.log(exptable[i]," : ",i)
+}
+}
+
+
 
 async function read(){
  
@@ -36,7 +52,7 @@ async function generatehash(textout){
         let c=0;
         
         for(let j=0;j<words[i].length;j++){
-        c=c+words[i].charCodeAt(j);
+        c=(c+(words[i].charCodeAt(j))*exptable[j%100])%MOD;
      }
     
      if(!mymap.has(words[i])){
@@ -115,6 +131,8 @@ async function appendToFile(out) {
 
 
 async function runall(){
+
+await precompute();
 
 await read()
     .then(text => {
