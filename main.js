@@ -21,9 +21,7 @@ async function precompute(){
       i=(i*hash)%MOD;
     }
 
-for(let i=0;i<exptable.length;i++){
-  console.log(exptable[i]," : ",i)
-}
+
 }
 
 
@@ -47,7 +45,7 @@ async function generatehash(textout){
     //console.log(textout,"><");
     const words=textout.split(" ");
      //console.log(words.length);
-     console.log(words,words.length);
+     //console.log(words,words.length);
      for(let i=0;i<words.length;i++){
         let c=0;
         
@@ -61,7 +59,7 @@ async function generatehash(textout){
         pair.set(c,[]);
      }
 
-     console.log(c,words[i]);
+     //console.log(c,words[i]);
      
 }
 
@@ -145,7 +143,7 @@ await read()
 
  await generatehash(textout)
         .then( message => {
-            console.log(mymap,message);
+            console.log(message);
         })
         .catch(err => {
             console.error("error in hashing",err);
@@ -153,17 +151,17 @@ await read()
 
 await makepair(textout)
         .then(message =>{
-              console.log(pair);
+              console.log("pairs have been made");
         })
         .catch(err => {
            console.log(err);
         })
 
-await babble(1000)
+await babble(100000)
      .then(message => {
          deleteFile();
         appendToFile(message)
-        console.log(message);
+        console.log("text has been generated");
      })
      .catch(err =>{
         console.log(err);
