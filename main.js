@@ -14,7 +14,7 @@ const invpair = new Map();
 
 let exptable= new Array();
 
-let list = ["sample.txt","hamlet.txt","cymbeline.txt","coriolanus.txt"];
+let list = ["text.txt","hamlet.txt","cymbeline.txt","coriolanus.txt"];
 
 async function precompute(){
     let i=1;
