@@ -14,6 +14,8 @@ const invpair = new Map();
 
 let exptable= new Array();
 
+let list = ["sample.txt","hamlet.txt","cymbeline.txt","coriolanus.txt"];
+
 async function precompute(){
     let i=1;
     for(let j=0;j<=100;j++){
@@ -26,10 +28,10 @@ async function precompute(){
 
 
 
-async function read(){
+async function read(file){
  
     try{
-        const data = await fs.readFile("sample.txt","utf-8");
+        const data = await fs.readFile(file,"utf-8");
        // console.log(data);
         return data;
     }
@@ -132,14 +134,18 @@ async function runall(){
 
 await precompute();
 
-await read()
+for(let i=0;i<list.length;i++){
+
+await read(list[i])
     .then(text => {
        textout="$ " + text+textout ;
-     //  console.log(textout);
+       console.log("read file number ",i+1," named: ",list[i]);
     })
     .catch(err => {
         console.error("Failed to read file:", err);
     });
+
+  }
 
  await generatehash(textout)
         .then( message => {
