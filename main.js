@@ -47,7 +47,7 @@ async function generatehash(textout){
     //console.log(textout,"><");
     const words=textout.split(" ");
      //console.log(words.length);
-     //console.log(words,words.length);
+     console.log(words,words.length);
      for(let i=0;i<words.length;i++){
         let c=0;
         
